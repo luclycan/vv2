@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clinical MCQs: Home</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#F2F5F4;--panel:#FFFFFF;--ink:#1B2733;--mute:#5B6B78;--line:#D5DDE0;--accent:#0E6E6E;--accent-ink:#FFFFFF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11181C;--panel:#192127;--ink:#E6EDF0;--mute:#93A3AE;--line:#2C3943;--accent:#4FC3C3;--accent-ink:#0B1A1A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11181C;--panel:#192127;--ink:#E6EDF0;--mute:#93A3AE;--line:#2C3943;--accent:#4FC3C3;--accent-ink:#0B1A1A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "IBM Plex Sans",system-ui,"Segoe UI","Noto Sans",sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:16px 16px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.brand{font:600 20px/1.2 "Newsreader",Georgia,serif;color:var(--ink);text-decoration:none}
+.btn{display:inline-block;font:600 15px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:11px 20px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.ic:focus-visible,.dot:focus-visible,.brand:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.show{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stage{position:relative;aspect-ratio:16/9;background:#cfe6f2}
+@media (max-width:600px){.stage{aspect-ratio:4/3}}
+.slide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .8s}
+.slide.on{opacity:1}
+.slide svg{width:100%;height:100%;display:block}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 14px;background:linear-gradient(transparent,rgba(10,25,32,.82));color:#fff}
+.cap b{display:block;font:600 clamp(18px,3vw,26px)/1.2 "Newsreader",Georgia,serif}
+.cap span{font-size:14px;opacity:.92}
+.greet{position:absolute;top:12px;left:12px;background:rgba(10,25,32,.66);color:#fff;border-radius:12px;padding:8px 16px;max-width:calc(100% - 24px);transition:opacity .25s}
+.greet b{display:block;font:600 clamp(26px,5.5vw,46px)/1.15 "Newsreader",Georgia,"Noto Sans",serif}
+.greet small{font-size:13px;opacity:.9}
+.ctrl{display:flex;align-items:center;gap:8px;padding:10px 12px}
+.ic{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 16px "IBM Plex Sans",sans-serif;cursor:pointer}
+.dots{display:flex;gap:6px;margin-left:auto}
+.dot{width:12px;height:12px;border-radius:50%;border:0;background:var(--line);cursor:pointer;padding:0}
+.dot[aria-current="true"]{background:var(--accent)}
+.intro{padding:34px 4px 8px;max-width:680px}
+.intro h1{font:600 clamp(28px,5vw,40px)/1.15 "Newsreader",Georgia,serif;margin:0 0 12px}
+.intro p{color:var(--mute);margin:0 0 20px;font-size:17px}
+.sec{font:600 20px "Newsreader",Georgia,serif;margin:36px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card h3{font:600 17px/1.25 "Newsreader",Georgia,serif;margin:0 0 6px}
+.card p{margin:0;color:var(--mute);font-size:15px}
+.langs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.langs li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.langs b{display:block;font:600 22px/1.3 "Newsreader",Georgia,"Noto Sans",serif}
+.langs span{font-size:13px;color:var(--mute)}
+.note{margin-top:28px;font-size:13px;color:var(--mute)}
+.music p{margin:0 0 12px}
+.music .meta{color:var(--mute);font-size:14px}
+.who{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pls{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.pls a{display:block;border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--ink);text-decoration:none}
+.pls a:hover{border-color:var(--accent)}
+.fl1,.fl2{animation:fl 1s steps(1) infinite}.fl2{animation-delay:-.5s}
+@keyframes fl{0%{opacity:1}50%{opacity:.2}}
+@media (prefers-reduced-motion:reduce){.slide,.greet{transition:none}.fl1,.fl2{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="brand" href="#" onclick="return false">Clinical MCQs</a><a class="btn" id="cta1" target="_blank" rel="noopener">Start practising</a></header>
+
+<section class="show" aria-roledescription="carousel" aria-label="Healthcare in action">
+ <div class="stage" id="stage"></div>
+ <div class="ctrl">
+  <button class="ic" id="prev" type="button" aria-label="Previous slide">&#8249;</button>
+  <button class="ic" id="pp" type="button" aria-label="Pause slideshow">&#10074;&#10074;</button>
+  <button class="ic" id="next" type="button" aria-label="Next slide">&#8250;</button>
+  <div class="dots" id="dots"></div>
+ </div>
+</section>
+
+<section class="intro">
+ <h1>Learn medicine from real clinical cases</h1>
+ <p>Practise case-based questions in biochemistry, physiology, anatomy, pathology and microbiology, with instant explanations after every answer.</p>
+ <a class="btn" id="cta2" target="_blank" rel="noopener">Open the question bank</a>
+</section>
+
+<h2 class="sec">What you get</h2>
+<div class="cards">
+ <div class="card"><h3>Case-based questions</h3><p>Over 100 clinical vignettes with lab and exam findings, like the ones you meet on the ward and in exams.</p></div>
+ <div class="card"><h3>Five subjects, or a mix</h3><p>Start one subject, or tick several and mix them into a single quiz of 10, 20 or 50 questions.</p></div>
+ <div class="card"><h3>Explanations that teach</h3><p>Every answer comes with the reasoning, and your missed questions are listed at the end for review.</p></div>
+</div>
+
+<h2 class="sec">Study with your music</h2>
+<section class="card music" id="music" aria-live="polite"></section>
+<p class="note">The scenes above are original illustrations, not photographs.</p>
+</div>
+
+<script>
+var QBANK='https://claude.ai/artifact/F2gaLzn1Sxh3JNLaNCMNXZ';
+document.getElementById('cta1').href=QBANK;document.getElementById('cta2').href=QBANK;
+
+var G=[['Hello','English','en','ltr'],['你好','Mandarin Chinese · Nǐ hǎo','zh','ltr'],['नमस्ते','Hindi · Namaste','hi','ltr'],['Hola','Spanish','es','ltr'],['Bonjour','French','fr','ltr'],['مرحباً','Arabic · Marhaban','ar','rtl'],['নমস্কার','Bengali · Nomoskar','bn','ltr'],['Olá','Portuguese','pt','ltr'],['Здравствуйте','Russian · Zdravstvuyte','ru','ltr'],['السلام علیکم','Urdu · Assalam alaikum','ur','rtl'],['Halo','Indonesian','id','ltr'],['Jambo','Swahili','sw','ltr']];
+
+/* Illustration helpers */
+var SK=['#f1c9a5','#c68863','#8d5a3c','#5a3825'],STE="<path d='M-6 -108v16a6 6 0 0 0 12 0v-16' fill='none' stroke='#26323a' stroke-width='2.5'/>",VEST="<rect x='-15' y='-100' width='30' height='10' fill='#f2b134'/>";
+function R(x,y,w,h,f,r){return"<rect x='"+x+"' y='"+y+"' width='"+w+"' height='"+h+"' rx='"+(r||0)+"' fill='"+f+"'/>"}
+function C(x,y,r,f){return"<circle cx='"+x+"' cy='"+y+"' r='"+r+"' fill='"+f+"'/>"}
+function P(x,y,k,c,sk,x2){return"<g transform='translate("+x+" "+y+") scale("+k+")'><rect x='-9' y='-52' width='8' height='52' rx='3' fill='#2f4858'/><rect x='1' y='-52' width='8' height='52' rx='3' fill='#2f4858'/><rect x='-21' y='-106' width='8' height='40' rx='4' fill='"+c+"'/><rect x='13' y='-106' width='8' height='40' rx='4' fill='"+c+"'/><rect x='-15' y='-112' width='30' height='64' rx='11' fill='"+c+"'/><circle cx='0' cy='-127' r='12' fill='"+sk+"'/><path d='M-12 -130a12 12 0 0 1 24 0q-12-7-24 0z' fill='#241812'/>"+(x2||'')+"</g>"}
+function line(p,c){return"<polyline points='"+p+"' fill='none' stroke='"+(c||'#4be38a')+"' stroke-width='3'/>"}
+function cross(x,y,s,c){return"<path d='M"+x+" "+(y-s)+"v"+2*s+"M"+(x-s)+" "+y+"h"+2*s+"' stroke='"+c+"' stroke-width='"+s/2.4+"'/>"}
+function svg(b){return"<svg viewBox='0 0 800 450' preserveAspectRatio='xMidYMid slice' aria-hidden='true' xmlns='http://www.w3.org/2000/svg'>"+b+"</svg>"}
+
+var SC=[],w,i,j;
+/* 0 hospital */
+w=R(0,0,800,300,'#cfe6f2')+C(690,70,34,'#fbe49a')+R(0,300,800,150,'#86b496')+R(60,150,130,160,'#e9eef2')+R(610,150,130,160,'#e9eef2')+R(190,100,420,210,'#f6f8fa');
+for(i=0;i<4;i++)for(j=0;j<9;j++)w+=R(215+j*42,118+i*44,26,28,'#a6cfe6',3);
+for(i=0;i<3;i++)for(j=0;j<3;j++)w+=R(76+j*38,170+i*46,24,30,'#a6cfe6',3)+R(626+j*38,170+i*46,24,30,'#a6cfe6',3);
+w+=R(310,244,180,10,'#0e6e6e')+R(330,254,140,56,'#dfe7ec')+R(350,262,100,48,'#6fa5bf',4)+R(368,36,64,64,'#0e6e6e',10)+R(372,40,56,56,'#fff',8)+cross(400,68,18,'#0e6e6e');
+w+=R(330,310,140,62,'#d8d2c4')+R(0,372,800,78,'#59656e');for(i=0;i<8;i++)w+=R(20+i*100,408,56,6,'#e8e8e8');
+w+=R(26,296,10,46,'#6b4a35')+C(31,290,30,'#4e8a5e')+R(764,296,10,46,'#6b4a35')+C(769,290,30,'#4e8a5e')+P(380,380,.75,'#fff',SK[1],STE)+P(430,384,.75,'#2a9d8f',SK[2]);
+SC[0]=svg(w);
+/* 1 bedside */
+w=R(0,0,800,450,'#e8f0ef')+R(0,330,800,120,'#cddad6')+R(80,70,160,150,'#bfe0ee',6)+R(158,70,4,150,'#e8f0ef')+R(80,142,160,4,'#e8f0ef');
+w+=R(220,300,320,16,'#8998a3',3)+R(236,316,10,34,'#8998a3')+R(514,316,10,34,'#8998a3')+R(228,262,304,42,'#fff',10)+R(340,258,192,48,'#7fb7c9',10)+R(236,246,88,24,'#f2f5f6',10)+C(280,244,17,SK[2])+R(262,226,36,10,'#241812',5);
+w+=R(590,140,150,100,'#17232c',8)+R(596,146,138,88,'#0d1a22',4)+line('606,196 630,196 640,166 652,222 664,196 724,196')+R(660,240,10,100,'#8998a3')+R(630,336,90,8,'#8998a3',3);
+w+=P(150,430,1.9,'#fff',SK[0],STE+"<rect x='14' y='-94' width='18' height='24' fill='#f3d9a4' stroke='#876'/>")+P(620,436,1.9,'#2a9d8f',SK[3]);
+SC[1]=svg(w);
+/* 2 trauma bay */
+w=R(0,0,800,450,'#dce6ea')+R(0,350,800,100,'#b8c7ce')+R(396,0,8,14,'#8a99a3')+C(400,62,52,'#f8f9fa')+C(400,62,32,'#fff4cc')+R(330,128,140,34,'#c0392b',6)+"<text x='400' y='152' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='20' fill='#fff'>TRAUMA</text>";
+w+=R(60,110,140,90,'#17232c',8)+R(66,116,128,78,'#0d1a22',4)+line('76,160 100,160 112,134 124,184 136,160 184,160')+R(600,110,140,90,'#17232c',8)+R(606,116,128,78,'#0d1a22',4)+line('616,160 640,160 652,134 664,184 676,160 724,160','#59c3ff');
+w+=R(230,300,340,16,'#a9b6be',3)+R(246,316,8,50,'#a9b6be')+R(546,316,8,50,'#a9b6be')+C(250,372,10,'#333')+C(550,372,10,'#333')+R(240,276,320,28,'#f4f7f8',10)+R(330,270,220,34,'#8fc3d6',10)+C(268,266,16,SK[1]);
+w+=P(140,440,1.8,'#2d6cdf',SK[0])+P(215,446,1.8,'#c0392b',SK[2])+P(610,440,1.8,'#2a9d8f',SK[3])+P(690,446,1.8,'#f2b134',SK[1]);
+SC[2]=svg(w);
+/* 3 ambulance */
+w=R(0,0,800,450,'#f4cf9c')+R(0,0,800,140,'#f7dfb6');[90,130,70,110,150,80,120,100,140].forEach(function(h,k){w+=R(k*90,215-h,70,h,'#8497a6')});
+w+=R(0,330,800,120,'#555f68');for(i=0;i<7;i++)w+=R(i*120+20,392,70,8,'#e9e9e9');
+w+=R(200,200,300,140,'#fff',14)+R(500,230,110,110,'#fff',12)+R(520,244,70,44,'#9fcbe0',6)+R(200,262,410,16,'#d9382c')+cross(338,236,16,'#d9382c')+"<rect class='fl1' x='300' y='182' width='50' height='18' rx='4' fill='#2d6cdf'/><rect class='fl2' x='350' y='182' width='50' height='18' rx='4' fill='#e63b2e'/>"+C(290,342,30,'#23282c')+C(290,342,12,'#aab')+C(540,342,30,'#23282c')+C(540,342,12,'#aab');
+w+=P(690,425,1.7,'#2a9d8f',SK[1],VEST)+P(150,420,1.6,'#2a9d8f',SK[2],VEST);
+SC[3]=svg(w);
+/* 4 simulation lab */
+w=R(0,0,800,450,'#e6edf2')+R(0,340,800,110,'#c8d3da')+R(70,70,300,170,'#17232c',10)+R(78,78,284,154,'#0d1a22',6)+line('90,160 140,160 160,120 180,200 200,160 270,160 290,120 310,200 330,160 350,160');
+w+=R(380,300,360,16,'#9aa8b2',3)+R(400,316,10,60,'#9aa8b2')+R(710,316,10,60,'#9aa8b2')+R(410,276,240,26,'#e3cfb4',12)+C(396,284,17,'#e3cfb4')+R(640,282,80,18,'#e3cfb4',8);
+w+=P(200,440,1.9,'#fff',SK[2],STE)+P(450,442,1.8,'#2d6cdf',SK[0])+P(540,448,1.8,'#7b5ea7',SK[3])+P(630,442,1.8,'#2a9d8f',SK[1]);
+SC[4]=svg(w);
+/* 5 community clinic */
+w=R(0,0,800,450,'#d3e8f1')+C(110,80,36,'#fbe49a')+R(0,320,800,130,'#8dbb8a')+R(0,382,800,68,'#cdbf9f')+R(114,300,12,60,'#6b4a35')+C(120,290,42,'#4e8a5e')+R(694,290,12,60,'#6b4a35')+C(700,280,48,'#4e8a5e');
+w+=R(260,170,300,150,'#fbf3e4')+"<polygon points='240,172 410,108 580,172' fill='#c4684f'/>"+R(380,240,60,80,'#6f9ab0',4)+R(290,200,60,50,'#a6cfe6',4)+R(470,200,60,50,'#a6cfe6',4)+R(384,190,32,32,'#fff',5)+cross(400,206,9,'#0e6e6e');
+w+=P(300,404,1.1,'#e8564a',SK[2])+P(345,408,1.1,'#7b5ea7',SK[3])+P(386,410,.65,'#f2b134',SK[1])+P(520,414,1.5,'#2a9d8f',SK[2],"<rect x='14' y='-70' width='22' height='18' rx='3' fill='#c0392b'/>");
+SC[5]=svg(w);
+
+var T=[['Hospitals that never close','Round-the-clock care, from emergency departments to wards.'],['Clinicians at the bedside','Careful history, examination and clear explanations for every patient.'],['Trauma response teams','Every second counts: a coordinated team assesses and treats together.'],['Rapid response on the road','Paramedics bring emergency care to the patient before the hospital doors.'],['Learning by simulation','Students practise skills and clinical reasoning before they meet real patients.'],['Care in the community','Clinics and health workers carry care close to home.']];
+var stage=document.getElementById('stage');
+stage.innerHTML=T.map(function(t,k){return'<figure class="slide'+(k?'':' on')+'" role="group" aria-roledescription="slide" aria-label="'+(k+1)+' of '+T.length+'">'+SC[k]+'<figcaption class="cap"><b>'+t[0]+'</b><span>'+t[1]+'</span></figcaption></figure>'}).join('')+'<div class="greet" aria-hidden="true"><b id="gw">Hello</b><small id="gl">English</small></div>';
+var slides=stage.querySelectorAll('.slide'),dots=document.getElementById('dots'),cur=0,timer=null,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+dots.innerHTML=T.map(function(_,k){return'<button class="dot" type="button" data-i="'+k+'" aria-label="Show slide '+(k+1)+'"></button>'}).join('');
+function show(n){cur=(n+T.length)%T.length;slides.forEach(function(s,k){s.classList.toggle('on',k===cur)});dots.querySelectorAll('.dot').forEach(function(d,k){d.setAttribute('aria-current',k===cur?'true':'false')})}
+function play(){stop();timer=setInterval(function(){show(cur+1)},5200);pp.textContent='\u275A\u275A';pp.setAttribute('aria-label','Pause slideshow')}
+function stop(){clearInterval(timer);timer=null}
+var pp=document.getElementById('pp');
+pp.addEventListener('click',function(){if(timer){stop();pp.textContent='\u25B6';pp.setAttribute('aria-label','Play slideshow')}else play()});
+document.getElementById('prev').addEventListener('click',function(){show(cur-1)});
+document.getElementById('next').addEventListener('click',function(){show(cur+1)});
+dots.addEventListener('click',function(e){var b=e.target.closest('.dot');if(b)show(+b.dataset.i)});
+show(0);if(reduce){pp.textContent='\u25B6';pp.setAttribute('aria-label','Play slideshow')}else play();
+
+/* Cycling greeting */
+var gi=0,gw=document.getElementById('gw'),gl=document.getElementById('gl'),gb=stage.querySelector('.greet');
+function setG(){var g=G[gi];gw.textContent=g[0];gw.lang=g[2];gw.dir=g[3];gl.textContent=g[1]}
+setG();
+if(!reduce)setInterval(function(){gb.style.opacity=0;setTimeout(function(){gi=(gi+1)%G.length;setG();gb.style.opacity=1},260)},2600);
+
+/* Google sign-in, then Spotify connect. Add both client IDs when you host this page on your own site. */
+var GOOGLE_CLIENT_ID='',SPOTIFY_CLIENT_ID='';
+var SP_SCOPE='user-read-private playlist-read-private',REDIRECT=location.origin+location.pathname;
+var mus=document.getElementById('music');
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return'&#'+c.charCodeAt(0)+';'})}
+function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k));if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,JSON.stringify(v))}catch(e){}return null}
+function b64(buf){return btoa(String.fromCharCode.apply(null,new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+async function spLogin(){
+ var v=b64(crypto.getRandomValues(new Uint8Array(48)));
+ var ch=b64(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)));
+ sessionStorage.setItem('sp_v',v);
+ location.href='https://accounts.spotify.com/authorize?'+new URLSearchParams({client_id:SPOTIFY_CLIENT_ID,response_type:'code',redirect_uri:REDIRECT,scope:SP_SCOPE,code_challenge_method:'S256',code_challenge:ch});
+}
+async function spToken(code){
+ var r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({client_id:SPOTIFY_CLIENT_ID,grant_type:'authorization_code',code:code,redirect_uri:REDIRECT,code_verifier:sessionStorage.getItem('sp_v')||''})});
+ if(!r.ok)throw new Error('token');
+ var j=await r.json();sessionStorage.setItem('sp_t',j.access_token);sessionStorage.setItem('sp_exp',String(Date.now()+j.expires_in*1000));
+}
+async function spGet(p){var r=await fetch('https://api.spotify.com/v1'+p,{headers:{Authorization:'Bearer '+sessionStorage.getItem('sp_t')}});if(!r.ok)throw new Error(p);return r.json()}
+function onGoogle(resp){
+ try{var b=resp.credential.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'),p=JSON.parse(decodeURIComponent(escape(atob(b))));store('qb_user',{name:p.name||'',email:p.email||''})}catch(e){return}
+ render();
+}
+function loadGoogle(){
+ function init(){google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID,callback:onGoogle});google.accounts.id.renderButton(document.getElementById('gbtn'),{theme:'outline',size:'large'})}
+ if(window.google&&google.accounts)return init();
+ var s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;s.onload=init;document.head.appendChild(s);
+}
+async function render(){
+ if(!GOOGLE_CLIENT_ID||!SPOTIFY_CLIENT_ID){mus.innerHTML='<p><b>Music sign-in is not switched on yet.</b></p><p class="meta">Signing in with Google and connecting Spotify needs a Google client ID, a Spotify client ID and a site with its own web address, so it cannot run on this claude.ai page.</p>';return}
+ var u=store('qb_user');
+ if(!u){mus.innerHTML='<p><b>Step 1.</b> Sign in with Google.</p><div id="gbtn"></div>';loadGoogle();return}
+ var who='<p class="who">Signed in as <b>'+esc(u.name||u.email)+'</b> <button class="btn ghost" id="out" type="button">Sign out</button></p>';
+ var ok=sessionStorage.getItem('sp_t')&&+sessionStorage.getItem('sp_exp')>Date.now();
+ if(!ok){mus.innerHTML=who+'<p><b>Step 2.</b> Connect your Spotify account to open your playlists while you study.</p><button class="btn" id="sp" type="button">Connect Spotify</button>';return}
+ mus.innerHTML=who+'<p class="meta">Loading your Spotify playlists…</p>';
+ try{
+  var me=await spGet('/me'),pl=await spGet('/me/playlists?limit=8'),items=(pl.items||[]).filter(Boolean);
+  mus.innerHTML=who+'<p>Spotify connected as <b>'+esc(me.display_name||me.id)+'</b>.</p>'+(items.length?'<ul class="pls">'+items.map(function(i){return'<li><a href="'+esc(i.external_urls&&i.external_urls.spotify||'#')+'" target="_blank" rel="noopener">'+esc(i.name)+'</a></li>'}).join('')+'</ul>':'<p class="meta">No playlists found on this account.</p>');
+ }catch(e){
+  ['sp_t','sp_exp'].forEach(function(k){sessionStorage.removeItem(k)});
+  mus.innerHTML=who+'<p class="meta">Spotify needs you to connect again.</p><button class="btn" id="sp" type="button">Connect Spotify</button>';
+ }
+}
+mus.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+ if(b.id==='sp')spLogin();
+ else if(b.id==='out'){store('qb_user',null);['sp_t','sp_exp','sp_v'].forEach(function(k){sessionStorage.removeItem(k)});render()}});
+var q0=new URLSearchParams(location.search);
+if(q0.get('code')||q0.get('error')){var c0=q0.get('code');history.replaceState({},'',REDIRECT);if(c0)spToken(c0).then(render,render);else render()}else render();
+</script>
+</body>
+</html>
